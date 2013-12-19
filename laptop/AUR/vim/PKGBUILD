@@ -1,15 +1,22 @@
+# ==================================================================
+# FILE     PKGBUILD (for vim)
+# MACHINE  laptop
+# INFO     taken from the original from archlinux.org website
+#          if a new version has to be built, you either have to 
+#          modify this file or take the original from the website
+#          and customize it according to this file.
+#          Customizations: -  _topver and all other Versions
+#                          -  md5sums with updpkgsums
+#
+# DATE     17.12.2013
+# OWNER    Bischofberger
+# ==================================================================
+
+
 # Maintainer: Thomas Dziedzic <gostrc@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: tobias [ tobias at archlinux org ]
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
-
-# Original ist auf der archlinux.org Seite.
-# Wenn eine neue Version gebaut werden soll, muss entweder das Original
-# umgeschrieben werden, oder (evtl. besser) dieses PKGBUILD file angepasst.
-# Dazu folgendes ändern:
-# - _topver und alle anderen Versionen (siehe Original von archlinux Seite)
-# - md5sums mit updpkgsums
-# - ...
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
