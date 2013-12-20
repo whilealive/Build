@@ -1,0 +1,47 @@
+# ==================================================================
+# FILE     PKGBUILD (for tabbed-git)
+# MACHINE  laptop
+# INFO     config.h modification
+#
+# DATE     20.12.2013
+# OWNER    Bischofberger
+# ==================================================================
+
+
+# Maintainer: Stefan Husmann <stefan-husmann@t-online.de>
+pkgname=tabbed-git
+pkgver=0.5.14.ge68297e
+pkgrel=1
+pkgdesc="Simple generic tabbed fronted to xembed aware applications"
+arch=('i686' 'x86_64')
+url="http://tools.suckless.org/tabbed/"
+license=('MIT/X')
+depends=('libx11')
+makedepends=('git')
+provides=('tabbed')
+conflicts=('tabbed')
+source=('git+http://git.suckless.org/tabbed')
+md5sums=('SKIP')
+_gitname="tabbed"
+
+pkgver() {
+  cd "$srcdir"/$_gitname
+  #echo $(git log -1 --format="%cd" --date=short | sed 's|-||g')
+  git describe --tags | sed 's+[-_]+.+g'
+}
+
+build() {
+  cd "$srcdir/$_gitname"
+
+	# config.h file handling... (modified, Bischofberger)
+	msg "If you want to configure tabbed copy file config.h from ${srcdir} directory to ${startdir} dir and edit it"
+	[[ -e ${startdir}/config.h ]] && msg "Using your config.h" && cp ${startdir}/config.h .
+
+  make PREFIX=/usr
+}
+
+package() {
+  cd "$srcdir/$_gitname"
+  make DESTDIR="$pkgdir/" PREFIX=/usr install
+  install -Dm0644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
