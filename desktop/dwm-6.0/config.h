@@ -4,7 +4,7 @@
  * MACHINE  desktop
  * INFO     default terminal is suckless st
  *
- * DATE     29.12.2013
+ * DATE     04.01.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -28,22 +28,25 @@ static const char *tags[] = { "1:term", "2:web", "3:mail", "4:file", "5:doc", "6
 
 static const Rule rules[] = {
 	/* class                     instance    title             tags mask     isfloating   monitor */
-	{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
 	{ "Chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
+	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
 	{ NULL,                      NULL,       "ranger",         1 << 3,       False,       -1 },
-	{ "Dolphin",                 NULL,       NULL,             1 << 3,       True,        -1 },
 	{ NULL,                      NULL,       "LibreOffice",    1 << 4,       False,       -1 },
 	{ "Zathura",                 NULL,       NULL,             1 << 4,       False,       -1 },
 	{ NULL,                      NULL,       "Drucken",        1 << 4,       True,        -1 },  /* von Zathura */
-	//{ "Okular",                  NULL,       NULL,             1 << 4,       False,       -1 },
-	//{ "qpdfview",                NULL,       NULL,             1 << 4,       False,       -1 },
 	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Inkscape",                NULL,       NULL,             1 << 5,       True         -1 },
+	{ "Scribus",                 NULL,       NULL,             1 << 5,       True         -1 },
 	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       False,       -1 },
-	{ "Kile",                    NULL,       NULL,             1 << 5,       False,       -1 },
+	/* old */
+	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
+	//{ "Dolphin",                 NULL,       NULL,             1 << 3,       True,        -1 },
+	//{ "Okular",                  NULL,       NULL,             1 << 4,       False,       -1 },
+	//{ "qpdfview",                NULL,       NULL,             1 << 4,       False,       -1 },
 	//{ "Kcalc",                   NULL,       NULL,             1 << 5,       True,        -1 },
-	{ NULL,                      NULL,       "Rubyripper",     1 << 5,       True,        -1 },
+	//{ NULL,                      NULL,       "Rubyripper",     1 << 5,       True,        -1 },
+	//{ "Kile",                    NULL,       NULL,             1 << 5,       False,       -1 },
 };
 
 /* layout(s) */
