@@ -36,8 +36,8 @@ static const Rule rules[] = {
 	{ "Zathura",                 NULL,       NULL,             1 << 4,       False,       -1 },
 	{ NULL,                      NULL,       "Drucken",        1 << 4,       True,        -1 },  /* von Zathura */
 	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Inkscape",                NULL,       NULL,             1 << 5,       True         -1 },
-	{ "Scribus",                 NULL,       NULL,             1 << 5,       True         -1 },
+	{ "Inkscape",                NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Scribus",                 NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       False,       -1 },
 	/* old */
 	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
