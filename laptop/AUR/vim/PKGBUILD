@@ -1,17 +1,11 @@
 # ==================================================================
-# FILE     PKGBUILD (for vim)
-# MACHINE  laptop
-# INFO     taken from the original from archlinux.org website
-#          if a new version has to be built, you either have to 
-#          modify this file or take the original from the website
-#          and customize it according to this file.
-#          Customizations: -  _topver and all other Versions
-#                          -  md5sums with updpkgsums
+# FILE     PKGBUILD for vim
+# MACHINE  all
+# INFO     original in var/abs/extra/vim/
 #
-# DATE     17.12.2013
+# DATE     21.01.2014
 # OWNER    Bischofberger
 # ==================================================================
-
 
 # Maintainer: Thomas Dziedzic <gostrc@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
@@ -21,11 +15,11 @@
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
 _topver=7.4
-_patchlevel=16
-__hgrev=d17ef148ada4
+_patchlevel=135
+__hgrev=de28b1568fc2
 _versiondir="vim${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
-pkgrel=2
+pkgrel=1
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
@@ -34,10 +28,10 @@ source=("ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz"
         "ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz.sig"
         'vimrc'
         'archlinux.vim')
-md5sums=('733cce44a08ea953ad0e1f9d574670e0'
+md5sums=('be672ce2a929503412378c998fc3dc27'
          'SKIP'
-         '01781430325814e56d393cbecc6e048e'
-         '884d985fc3aef8e65d2b336db02e8bc7')
+         'b9d4dcb9d3ee2e151dc4be1e94934f6a'
+         '10353a61aadc3f276692d0e17db1478e')
 
 # source PKGBUILD && mksource
 mksource() {
@@ -79,27 +73,21 @@ build() {
 
   (cd vim-build/src && autoconf)
 
-  #cp -a vim-build gvim-build
-
   cd "${srcdir}"/vim-build
 
   ./configure \
     --prefix=/usr \
     --localstatedir=/var/lib/vim \
-    --with-features=big \
-    --with-compiledby='Arch Linux' \
-    --enable-gpm \
+    --with-features=normal \
+    --with-compiledby='Arch:Bruno' \
     --enable-acl \
-    --with-x=yes \
-    --disable-gui \
     --enable-multibyte \
     --enable-cscope \
+    --with-x=yes \
+    --disable-gpm \
     --disable-netbeans \
-    --disable-perlinterp \
-    --enable-pythoninterp \
-    --disable-python3interp \
-    --disable-rubyinterp \
-    --disable-luainterp
+    --disable-pythoninterp \
+    --disable-python3interp
 
   make
 }
@@ -130,8 +118,12 @@ package_vim() {
     rm -f ex.1 view.1 # provided by (n)vi
     rm -f evim.1    # this does not make sense if we have no GUI
   done
+ 
+  # Runtime provided by runtime package
+  #rm -r "${pkgdir}"/usr/share/vim
 
-  # important change from original to custom here!!!
+  # since I do not build the gvim package, I need to provide runtime from vim here
+  # (in the original PKGBUILD, this line is in the package_gvim() below)
   mv "${pkgdir}"/usr/share/vim "${srcdir}"/runtime-install
 
   # license
@@ -139,9 +131,10 @@ package_vim() {
     "${pkgdir}"/usr/share/licenses/${pkgname}/license.txt
 }
 
+
 package_vim-runtime() {
   pkgdesc='Runtime for vim and gvim'
-  depends=('gawk')
+  depends=('perl' 'gawk')
   backup=('etc/vimrc')
 
   # Install the runtime split from gvim
