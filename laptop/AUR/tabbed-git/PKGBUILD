@@ -10,7 +10,7 @@
 
 # Maintainer: Stefan Husmann <stefan-husmann@t-online.de>
 pkgname=tabbed-git
-pkgver=0.5.14.ge68297e
+pkgver=0.6.5.g030eda8
 pkgrel=1
 pkgdesc="Simple generic tabbed fronted to xembed aware applications"
 arch=('i686' 'x86_64')

@@ -3,7 +3,7 @@
 * MACHINE  laptop
 * INFO     -
 *
-* DATE     20.12.2013
+* DATE     05.02.2014
 * OWNER    Bischofberger
 * ==================================================================
 */
@@ -27,8 +27,8 @@ static const Bool foreground    = True;
  * then the current position is changed + newposition. If npisrelative
  * is False, then newposition is an absolute position.
  */
-static int  newposition   = 0;
-static Bool npisrelative  = False;
+static int  newposition   = 1;
+static Bool npisrelative  = True;
 
 #define SETPROP(p) { \
 	.v = (char *[]){ "/bin/sh", "-c", \
@@ -45,8 +45,8 @@ static Key keys[] = { \
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          { 0 } },
 	{ MODKEY,                       XK_t,      spawn,          SETPROP("_TABBED_SELECT_TAB") },
 
-	{ MODKEY|ShiftMask,             XK_l,      rotate,         { .i = +1 } },
-	{ MODKEY|ShiftMask,             XK_h,      rotate,         { .i = -1 } },
+	{ MODKEY,                       XK_Right,  rotate,         { .i = +1 } },
+	{ MODKEY,                       XK_Left,   rotate,         { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movetab,        { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movetab,        { .i = +1 } },
 	{ MODKEY,                       XK_Tab,    rotate,         { .i = 0 } },
