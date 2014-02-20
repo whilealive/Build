@@ -4,7 +4,7 @@
  * MACHINE  laptop
  * INFO     default terminal is suckless st
  *
- * DATE     15.01.2014
+ * DATE     20.02.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -39,6 +39,7 @@ static const Rule rules[] = {
 	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Inkscape",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Scribus",                 NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       False,       -1 },
 	/* old */
 	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
