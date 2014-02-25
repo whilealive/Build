@@ -4,7 +4,7 @@
  * MACHINE  desktop
  * INFO     default terminal is suckless st
  *
- * DATE     22.02.2014
+ * DATE     25.02.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -33,7 +33,6 @@ static const Rule rules[] = {
 	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
 	{ NULL,                      NULL,       "ranger",         1 << 3,       False,       -1 },
 	{ NULL,                      NULL,       "LibreOffice",    1 << 4,       False,       -1 },
-	{ "Zathura",                 NULL,       NULL,             1 << 4,       False,       -1 },
 	{ "tabbed",                  NULL,       NULL,             1 << 4,       False,       -1 },  /* zathuratab */
 	{ NULL,                      NULL,       "Drucken",        1 << 4,       True,        -1 },  /* von Zathura */
 	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
