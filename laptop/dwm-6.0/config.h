@@ -4,7 +4,7 @@
  * MACHINE  laptop
  * INFO     default terminal is suckless st
  *
- * DATE     20.02.2014
+ * DATE     27.02.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -76,7 +76,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
-static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", NULL };
+static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", "--cmd=delete_desktop", NULL };
 static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
 static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
 static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
