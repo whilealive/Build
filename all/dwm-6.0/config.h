@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     21.04.2014
+ * DATE     22.04.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -24,7 +24,7 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1:term", "2:web", "3:mail", "4:file", "5:doc", "6:gui", "7:spare" };
+static const char *tags[] = { "1:term", "2:web", "3:mail", "4:file", "5:doc", "6:dtp", "7:gui", "8:spare" };
 
 static const Rule rules[] = {
 	/* class                     instance    title             tags mask     isfloating   monitor */
@@ -35,11 +35,14 @@ static const Rule rules[] = {
 	{ NULL,                      NULL,       "LibreOffice",    1 << 4,       False,       -1 },
 	{ "tabbed",                  NULL,       NULL,             1 << 4,       False,       -1 },  /* zathuratab */
 	{ NULL,                      NULL,       "Drucken",        1 << 4,       True,        -1 },  /* von Zathura */
+	{ "Evince",                  NULL,       NULL,             1 << 4,       False,       -1 },
 	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Inkscape",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Scribus",                 NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       False,       -1 },
+	{ "Gnome-mplayer",           NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "Deadbeef",                NULL,       NULL,             1 << 6,       True,        -1 },
+	{ NULL,                      NULL,       "HandBrake",      1 << 6,       True,        -1 },
+	{ "Easytag",                 NULL,       NULL,             1 << 6,       True,        -1 },
 	/* old */
 	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
 	//{ "Dolphin",                 NULL,       NULL,             1 << 3,       True,        -1 },
@@ -51,7 +54,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact      = 0.70;  /* factor of master area size [0.05..0.95] */
+static const float mfact      = 0.75;  /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;     /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
@@ -119,6 +122,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
