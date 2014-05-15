@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     22.04.2014
+ * DATE     15.05.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -80,9 +80,10 @@ static const Layout layouts[] = {
 static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", NULL };
-static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
-static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
-static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
+/* old, solved by xbindkeys tool now */
+//static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
+//static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
+//static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -110,10 +111,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	/* start of own keys */
-	{ 0,                            0x1008ff13, spawn,	       {.v = upvol } },
-	{ 0,                            0x1008ff11, spawn,	       {.v = downvol } },
-	{ 0,                            0x1008ff12, spawn,         {.v = mutevol } },
 	{ MODKEY|ShiftMask,             XK_r,       spawn,         {.v = rangercmd } },
+    /* old, solved by xbindkeys tool now */
+    //	{ 0,                            0x1008ff13, spawn,	       {.v = upvol } },
+    //	{ 0,                            0x1008ff11, spawn,	       {.v = downvol } },
+    //	{ 0,                            0x1008ff12, spawn,         {.v = mutevol } },
 	/* end of own keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
