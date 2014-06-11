@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     15.05.2014
+ * DATE     11.06.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -24,26 +24,27 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1:term", "2:web", "3:mail", "4:file", "5:doc", "6:dtp", "7:gui", "8:spare" };
+static const char *tags[] = { "1:term", "2:web", "3:mail", "4:doc", "5:dtp", "6:gui", "7:virt", "8:spare" };
 
 static const Rule rules[] = {
 	/* class                     instance    title             tags mask     isfloating   monitor */
 	{ "Chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
 	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
-	{ NULL,                      NULL,       "ranger",         1 << 3,       False,       -1 },
-	{ NULL,                      NULL,       "LibreOffice",    1 << 4,       False,       -1 },
-	{ "tabbed",                  NULL,       NULL,             1 << 4,       False,       -1 },  /* zathuratab */
-	{ NULL,                      NULL,       "Drucken",        1 << 4,       True,        -1 },  /* von Zathura */
-	{ "Evince",                  NULL,       NULL,             1 << 4,       False,       -1 },
-	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Inkscape",                NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Scribus",                 NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Gnome-mplayer",           NULL,       NULL,             1 << 6,       True,        -1 },
-	{ "Deadbeef",                NULL,       NULL,             1 << 6,       True,        -1 },
-	{ NULL,                      NULL,       "HandBrake",      1 << 6,       True,        -1 },
-	{ "Easytag",                 NULL,       NULL,             1 << 6,       True,        -1 },
+	{ NULL,                      NULL,       "LibreOffice",    1 << 3,       False,       -1 },
+	{ "tabbed",                  NULL,       NULL,             1 << 3,       False,       -1 },  /* zathuratab */
+	{ NULL,                      NULL,       "Drucken",        1 << 3,       True,        -1 },  /* von Zathura */
+	{ "Evince",                  NULL,       NULL,             1 << 3,       False,       -1 },
+	{ "Gimp",                    NULL,       NULL,             1 << 4,       True,        -1 },
+	{ "Inkscape",                NULL,       NULL,             1 << 4,       True,        -1 },
+	{ "Scribus",                 NULL,       NULL,             1 << 4,       True,        -1 },
+	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
+	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
+	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
 	/* old */
+	//{ NULL,                      NULL,       "ranger",         1 << 3,       False,       -1 },
 	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
 	//{ "Dolphin",                 NULL,       NULL,             1 << 3,       True,        -1 },
 	//{ "Okular",                  NULL,       NULL,             1 << 4,       False,       -1 },
@@ -79,11 +80,11 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
-static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", NULL };
-/* old, solved by xbindkeys tool now */
+/* old, (amixer solved by xbindkeys tool now) */
 //static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
 //static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
 //static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
+//static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -111,11 +112,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	/* start of own keys */
-	{ MODKEY|ShiftMask,             XK_r,       spawn,         {.v = rangercmd } },
-    /* old, solved by xbindkeys tool now */
-    //	{ 0,                            0x1008ff13, spawn,	       {.v = upvol } },
-    //	{ 0,                            0x1008ff11, spawn,	       {.v = downvol } },
-    //	{ 0,                            0x1008ff12, spawn,         {.v = mutevol } },
+    /* old, (amixer solved by xbindkeys tool now) */
+    //{ 0,                            0x1008ff13, spawn,	       {.v = upvol } },
+    //{ 0,                            0x1008ff11, spawn,	       {.v = downvol } },
+    //{ 0,                            0x1008ff12, spawn,         {.v = mutevol } },
+	//{ MODKEY|ShiftMask,             XK_r,       spawn,         {.v = rangercmd } },
 	/* end of own keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
