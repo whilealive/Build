@@ -3,7 +3,7 @@
 # MACHINE  all
 # INFO     original in var/abs/extra/vim/
 #
-# DATE     19.06.2014
+# DATE     20.06.2014
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -87,7 +87,7 @@ build() {
     --enable-cscope \
     --disable-netbeans \
     --disable-perlinterp \
-    --enable-pythoninterp \
+    --disable-pythoninterp \
     --disable-python3interp \
     --disable-rubyinterp \
     --disable-luainterp
