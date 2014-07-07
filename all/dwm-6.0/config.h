@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     11.06.2014
+ * DATE     07.07.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -42,16 +42,8 @@ static const Rule rules[] = {
 	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
 	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
-	/* old */
-	//{ NULL,                      NULL,       "ranger",         1 << 3,       False,       -1 },
-	//{ "Kwrite",                  NULL,       NULL,             0,            True,        -1 },
-	//{ "Dolphin",                 NULL,       NULL,             1 << 3,       True,        -1 },
-	//{ "Okular",                  NULL,       NULL,             1 << 4,       False,       -1 },
-	//{ "qpdfview",                NULL,       NULL,             1 << 4,       False,       -1 },
-	//{ "Kcalc",                   NULL,       NULL,             1 << 5,       True,        -1 },
-	//{ NULL,                      NULL,       "Rubyripper",     1 << 5,       True,        -1 },
-	//{ "Kile",                    NULL,       NULL,             1 << 5,       False,       -1 },
 };
 
 /* layout(s) */
