@@ -1,10 +1,10 @@
 /* 
  * ==================================================================
- * FILE     config.h (for dwm 6.0)
+ * FILE     config.h (for dwm-git)
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     07.07.2014
+ * DATE     05.08.2014
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -24,7 +24,7 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1:term", "2:web", "3:mail", "4:doc", "5:dtp", "6:gui", "7:virt", "8:spare" };
+static const char *tags[] = { "1:dev", "2:web", "3:mail", "4:doc", "5:dtp", "6:gui", "7:virt", "8:spare" };
 
 static const Rule rules[] = {
 	/* class                     instance    title             tags mask     isfloating   monitor */
@@ -70,9 +70,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 /* old, (amixer solved by xbindkeys tool now) */
+//static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 //static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
 //static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
 //static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
