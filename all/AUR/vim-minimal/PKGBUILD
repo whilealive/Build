@@ -101,7 +101,7 @@ build() {
 check() {
   # disable tests because they seem to freeze
 
-  cd "${srcdir}"/vim-build
+  cd "${srcdir}"/vim-minimal-build
 
   #make test
 }
