@@ -4,14 +4,20 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     05.08.2014
+ * DATE     10.07.2015
  * OWNER    Bischofberger
  * ==================================================================
  */
 
 
 /* appearance */
-static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+//static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+static const char *fonts[] = {
+    "Sans:size=10.5",
+    "VL Gothic:size=10.5",
+    "WenQuanYi Micro Hei:size=10.5",
+};
+static const char dmenufont[] = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
@@ -27,6 +33,11 @@ static const Bool topbar            = True;     /* False means bottom bar */
 static const char *tags[] = { "1:dev", "2:web", "3:mail", "4:doc", "5:dtp", "6:gui", "7:virt", "8:spare" };
 
 static const Rule rules[] = {
+	/* xprop(1):
+	 *	WM_CLASS(STRING) = instance, class
+	 *	WM_NAME(STRING) = title
+	 */
+	/* class      instance    title       tags mask     isfloating   monitor */
 	/* class                     instance    title             tags mask     isfloating   monitor */
 	{ "Chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
@@ -71,14 +82,10 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
-/* old, (amixer solved by xbindkeys tool now) */
-//static const char *dmenucmd[]   = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-//static const char *upvol[]      = { "amixer", "set", "Master", "5+", NULL };
-//static const char *downvol[]    = { "amixer", "set", "Master", "5-", NULL };
-//static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
-//static const char *rangercmd[]  = { "st", "-t", "ranger", "-e", "ranger", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *termcmd[]  = { "st", NULL };
+static const char *snippycmd[] = { "snippy", NULL };
+//static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -105,13 +112,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	/* start of own keys */
-    /* old, (amixer solved by xbindkeys tool now) */
-    //{ 0,                            0x1008ff13, spawn,	       {.v = upvol } },
-    //{ 0,                            0x1008ff11, spawn,	       {.v = downvol } },
-    //{ 0,                            0x1008ff12, spawn,         {.v = mutevol } },
-	//{ MODKEY|ShiftMask,             XK_r,       spawn,         {.v = rangercmd } },
-	/* end of own keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -121,6 +121,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY,                       XK_s,      spawn,          {.v = snippycmd } },
 };
 
 /* button definitions */
