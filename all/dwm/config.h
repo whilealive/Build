@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     10.07.2015
+ * DATE     12.08.2015
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -51,6 +51,7 @@ static const Rule rules[] = {
 	{ "Scribus",                 NULL,       NULL,             1 << 4,       True,        -1 },
 	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Galculator",              NULL,       NULL,             1 << 5,       True,        -1 },
 	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
 	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
