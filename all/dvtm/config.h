@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     -
  *
- * DATE     15.07.2015
+ * DATE     04.08.2015
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -112,7 +112,7 @@ static KeyBinding bindings[] = {
 	{ { MOD, '7',          }, { focusn,         { "7" }                     } },
 	{ { MOD, '8',          }, { focusn,         { "8" }                     } },
 	{ { MOD, '9',          }, { focusn,         { "9" }                     } },
-	{ { MOD, '\t',         }, { focuslast,      { NULL }                    } },
+	//{ { MOD, '\t',         }, { focuslast,      { NULL }                    } },
 	{ { MOD, 'q',          }, { quit,           { NULL }                    } },
 	{ { MOD, 'a',          }, { togglerunall,   { NULL }                    } },
 	{ { MOD, CTRL('L'),    }, { redraw,         { NULL }                    } },
@@ -138,7 +138,8 @@ static KeyBinding bindings[] = {
 	{ { MOD, 'v', '3'      }, { view,           { tags[2] }                 } },
 	{ { MOD, 'v', '4'      }, { view,           { tags[3] }                 } },
 	{ { MOD, 'v', '5'      }, { view,           { tags[4] }                 } },
-	{ { MOD, 'v', '\t',    }, { viewprevtag,    { NULL }                    } },
+	//{ { MOD, 'v', '\t',    }, { viewprevtag,    { NULL }                    } },
+	{ { MOD, '\t',         }, { viewprevtag,    { NULL }                    } },
 	{ { MOD, 't', '0'      }, { tag,            { NULL }                    } },
 	{ { MOD, 't', '1'      }, { tag,            { tags[0] }                 } },
 	{ { MOD, 't', '2'      }, { tag,            { tags[1] }                 } },
