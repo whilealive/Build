@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     12.08.2015
+ * DATE     25.08.2015
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -59,7 +59,8 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact      = 0.75;  /* factor of master area size [0.05..0.95] */
+//static const float mfact      = 0.75;  /* laptop screen */
+static const float mfact      = 0.65;  /* desktop screen */
 static const int nmaster      = 1;     /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
