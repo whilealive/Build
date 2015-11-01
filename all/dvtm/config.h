@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     -
  *
- * DATE     04.08.2015
+ * DATE     21.10.2015
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -50,7 +50,7 @@ static Color colors[] = {
 /* number of clients in master area */
 #define NMASTER 1
 /* scroll back buffer size in lines */
-#define SCROLL_HISTORY 2000
+#define SCROLL_HISTORY 4000
 /* printf format string for the tag in the status bar */
 #define TAG_SYMBOL   "[%s]"
 /* curses attributes for the currently selected tags */
@@ -62,7 +62,7 @@ static Color colors[] = {
 /* curses attributes for not selected tags which with urgent windows */
 #define TAG_URGENT (COLOR(BLUE) | A_NORMAL | A_BLINK)
 
-const char tags[][8] = { "1", "2", "3", "4", "5" };
+const char tags[][8] = { "1", "2", "3", "4", "5"};
 
 #include "tile.c"
 #include "grid.c"
@@ -71,9 +71,9 @@ const char tags[][8] = { "1", "2", "3", "4", "5" };
 
 /* by default the first layout entry is used */
 static Layout layouts[] = {
-	{ "[]=", tile },
-	{ "+++", grid },
-	{ "TTT", bstack },
+//	{ "[]=", tile },
+//	{ "+++", grid },
+//	{ "TTT", bstack },
 	{ "[ ]", fullscreen },
 };
 
@@ -139,7 +139,7 @@ static KeyBinding bindings[] = {
 	{ { MOD, 'v', '4'      }, { view,           { tags[3] }                 } },
 	{ { MOD, 'v', '5'      }, { view,           { tags[4] }                 } },
 	//{ { MOD, 'v', '\t',    }, { viewprevtag,    { NULL }                    } },
-	{ { MOD, '\t',         }, { viewprevtag,    { NULL }                    } },
+	{ { MOD, 't', 't'      }, { viewprevtag,    { NULL }                    } },
 	{ { MOD, 't', '0'      }, { tag,            { NULL }                    } },
 	{ { MOD, 't', '1'      }, { tag,            { tags[0] }                 } },
 	{ { MOD, 't', '2'      }, { tag,            { tags[1] }                 } },
