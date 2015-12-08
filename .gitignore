@@ -3,10 +3,11 @@
 # MACHINE  all
 # INFO     -
 #
-# DATE     15.07.2014
+# DATE     08.12.2015
 # OWNER    Bischofberger
 # ==================================================================
 
 # git shall ignore the following
 laptop/
 desktop/
+testing/
