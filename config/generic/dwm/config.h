@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     24.11.2015
+ * DATE     17.01.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -52,12 +52,13 @@ static const Rule rules[] = {
 	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
 	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "geogebra",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
 };
 
 /* layout(s) */
-static const float mfact      = 0.75;  /* laptop screen */
-//static const float mfact      = 0.65;  /* desktop screen */
+//static const float mfact      = 0.75;  /* laptop screen */
+static const float mfact      = 0.65;  /* desktop screen */
 static const int nmaster      = 1;     /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
@@ -82,9 +83,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", NULL };
+//static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 static const char *snippycmd[] = { "snippy", NULL };
-//static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
