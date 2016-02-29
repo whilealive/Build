@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     17.01.2016
+ * DATE     27.02.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -53,6 +53,7 @@ static const Rule rules[] = {
 	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "geogebra",                NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "JDownloader",             NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
 };
 
