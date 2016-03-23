@@ -1,10 +1,10 @@
 /*
 * ==================================================================
-* FILE     st-git config.h file
+* FILE     st config.h file
 * MACHINE  all
-* INFO     -
+* INFO     version 0.6.3
 *
-* DATE     10.07.2015
+* DATE     23.03.2016
 * OWNER    Bischofberger
 * ==================================================================
 */
@@ -16,7 +16,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Inconsolata:pixelsize=15:antialias=true:autohint=true";
+static char font[] = "Inconsolata:pixelsize=18:antialias=true:autohint=true";  // laptop2
+//static char font[] = "Inconsolata:pixelsize=15:antialias=true:autohint=true";  // desktop
 static int borderpx = 2;
 static char shell[] = "/bin/sh";
 static char *utmp = NULL;
@@ -41,7 +42,7 @@ static unsigned int doubleclicktimeout = 300;
 static unsigned int tripleclicktimeout = 600;
 
 /* alt screens */
-static int allowaltscreen = 1;
+static bool allowaltscreen = true;
 
 /* frames per second st should at maximum draw to the screen */
 static unsigned int xfps = 120;
@@ -138,6 +139,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
+	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
 };
 
