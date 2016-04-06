@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     20.03.2016
+ * DATE     06.04.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -83,7 +83,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-//static const char *termcmd[]  = { "st", NULL };
 static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
 static const char *snippycmd[] = { "snippy", NULL };
 
@@ -120,7 +119,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_s,      spawn,          {.v = snippycmd } },
 };
 
