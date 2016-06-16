@@ -1,9 +1,9 @@
 /* ==================================================================
-* FILE     config.h (for tabbed-git)
+* FILE     config.h (for tabbed-0.6-2)
 * MACHINE  laptop
 * INFO     -
 *
-* DATE     05.02.2014
+* DATE     30.05.2016
 * OWNER    Bischofberger
 * ==================================================================
 */
