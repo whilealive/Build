@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     06.04.2016
+ * DATE     25.07.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -34,7 +34,6 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
 	/* class                     instance    title             tags mask     isfloating   monitor */
 	{ "chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
@@ -54,6 +53,7 @@ static const Rule rules[] = {
 	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "geogebra",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "JDownloader",             NULL,       NULL,             1 << 5,       True,        -1 },
+	{ NULL,  "sun-awt-X11-XFramePeer",       NULL,             1 << 5,       True,        -1 },  /* Java... */
 	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
 };
 
