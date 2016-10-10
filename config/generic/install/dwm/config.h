@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     25.07.2016
+ * DATE     10.10.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -38,9 +38,10 @@ static const Rule rules[] = {
 	{ "chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
 	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
-	{ NULL,                      NULL,       "LibreOffice",    1 << 3,       False,       -1 },
+	{ "Gnumeric",                NULL,       NULL,             1 << 3,       False,       -1 },
+	{ "Sxiv",                    NULL,       NULL,             1 << 3,       False,       -1 },
 	{ "tabbed",                  NULL,       NULL,             1 << 3,       False,       -1 },  /* zathuratab */
-	{ NULL,                      NULL,       "Drucken",        1 << 3,       True,        -1 },  /* von Zathura */
+	{ NULL,                      NULL,       "Drucken",        1 << 3,       True,        -1 },  /* from Zathura */
 	{ "Evince",                  NULL,       NULL,             1 << 3,       False,       -1 },
 	{ "Gimp",                    NULL,       NULL,             1 << 4,       True,        -1 },
 	{ "Inkscape",                NULL,       NULL,             1 << 4,       True,        -1 },
@@ -50,7 +51,6 @@ static const Rule rules[] = {
 	{ "Galculator",              NULL,       NULL,             1 << 5,       True,        -1 },
 	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
 	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Truecrypt",               NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "geogebra",                NULL,       NULL,             1 << 5,       True,        -1 },
 	{ "JDownloader",             NULL,       NULL,             1 << 5,       True,        -1 },
 	{ NULL,  "sun-awt-X11-XFramePeer",       NULL,             1 << 5,       True,        -1 },  /* Java... */
