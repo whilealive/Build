@@ -1,23 +1,25 @@
 # ==================================================================
-# FILE     PKGBUILD for vim
+# FILE     PKGBUILD (for vim)
 # MACHINE  all
 # INFO     original in var/abs/extra/vim/
+#          Version 8.0
 #
-# DATE     19.01.2016
+# DATE     19.10.2016
 # OWNER    Bischofberger
 # ==================================================================
 
-# $Id: PKGBUILD 258320 2016-01-14 18:50:45Z anatolik $
+# $Id: PKGBUILD 277264 2016-09-28 17:32:34Z anatolik $
 # Maintainer: Anatol Pomozov <anatol.pomozov@gmail.com>
 # Contributor: Thomas Dziedzic <gostrc@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: tobias [ tobias at archlinux org ]
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
+# Contributor: Christian Hesse <mail@eworm.de>
 
 pkgbase=vim
 pkgname=(vim vim-runtime)
-pkgver=7.4.1089
-_versiondir=74
+pkgver=8.0.0013
+_versiondir=80
 pkgrel=1
 arch=(i686 x86_64)
 license=('custom:vim')
@@ -26,8 +28,8 @@ makedepends=(libxt)
 source=(vim-$pkgver.tar.gz::http://github.com/vim/vim/archive/v$pkgver.tar.gz
         vimrc
         archlinux.vim)
-sha1sums=('5c1859d60d8c44f409d9959149440bb5a3809afe'
-          '15ebf3f48693f1f219fe2d8edb7643683139eb6b'
+sha1sums=('605be1eddc4501aea7c83b72a63b9ade6da5d43b'
+          '539bfaa0517dfff6d61c37f9c2d81a0db756a4c9'
           '94f7bb87b5d06bace86bc4b3ef1372813b4eedf2')
 
 prepare() {
@@ -51,6 +53,7 @@ build() {
     --with-features=normal \
     --with-compiledby='Arch:Bruno' \
     --disable-gpm \
+    --enable-acl \
     --with-x=yes \
     --disable-gui \
     --enable-multibyte \
@@ -60,14 +63,15 @@ build() {
     --disable-pythoninterp \
     --disable-python3interp \
     --disable-rubyinterp \
-    --disable-luainterp
+    --disable-luainterp \
+    --disable-tclinterp
   make
 }
 
 check() {
   # disable tests because they seem to freeze
   cd "${srcdir}"/vim-$pkgver
-  #make test
+  #TERM=xterm make -j1 test
 }
 
 package_vim-runtime() {
@@ -76,7 +80,7 @@ package_vim-runtime() {
 
   cd "${srcdir}"/vim-$pkgver
 
-  (cd src && make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" installruntime install-languages installtools)
+  make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
   # man and bin files belong to 'vim'
   rm -r "${pkgdir}"/usr/share/man/ "${pkgdir}"/usr/bin/
 
@@ -103,6 +107,9 @@ package_vim-runtime() {
   install -Dm644 runtime/rgb.txt \
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/rgb.txt
 
+  # no desktop files and icons
+  rm -r "${pkgdir}"/usr/share/{applications,icons}
+
   # license
   install -dm755 "${pkgdir}"/usr/share/licenses/vim-runtime
   ln -s /usr/share/vim/vim${_versiondir}/doc/uganda.txt \
@@ -116,7 +123,8 @@ package_vim() {
               'python: Python 3 language support'
               'ruby: Ruby language support'
               'lua: Lua language support'
-              'perl: Perl language support')
+              'perl: Perl language support'
+              'tcl: Tcl language support')
   conflicts=('gvim' 'vim-minimal' 'vim-python3')
   provides=('xxd' 'vim-minimal' 'vim-python3')
   replaces=('vim-python3' 'vim-minimal')
@@ -137,6 +145,9 @@ package_vim() {
 
   # Runtime provided by runtime package
   rm -r "${pkgdir}"/usr/share/vim
+
+  # no desktop files and icons
+  rm -r "${pkgdir}"/usr/share/{applications,icons}
 
   # license
   install -Dm644 runtime/doc/uganda.txt \
