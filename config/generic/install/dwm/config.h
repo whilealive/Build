@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     10.10.2016
+ * DATE     26.10.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -35,7 +35,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class                     instance    title             tags mask     isfloating   monitor */
-	{ "chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
+	{ "Chromium",                NULL,       NULL,             1 << 1,       False,       -1 },
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
 	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
 	{ "Gnumeric",                NULL,       NULL,             1 << 3,       False,       -1 },
