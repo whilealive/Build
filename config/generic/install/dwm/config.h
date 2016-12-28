@@ -4,7 +4,7 @@
  * MACHINE  all
  * INFO     default terminal is suckless st
  *
- * DATE     26.10.2016
+ * DATE     27.12.2016
  * OWNER    Bischofberger
  * ==================================================================
  */
@@ -27,7 +27,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1:dev", "2:web", "3:mail", "4:doc", "5:dtp", "6:gui", "7:virt", "8:spare" };
+static const char *tags[] = { "1:dev", "2:web", "3:mail", "4:doc", "5:pic", "6:dtp", "7:gui", "8:virt", "9:spare" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,22 +39,22 @@ static const Rule rules[] = {
 	{ "Firefox",                 NULL,       NULL,             1 << 1,       False,       -1 },
 	{ NULL,                      NULL,       "mail",           1 << 2,       False,       -1 },
 	{ "Gnumeric",                NULL,       NULL,             1 << 3,       False,       -1 },
-	{ "Sxiv",                    NULL,       NULL,             1 << 3,       False,       -1 },
 	{ "tabbed",                  NULL,       NULL,             1 << 3,       False,       -1 },  /* zathuratab */
 	{ NULL,                      NULL,       "Drucken",        1 << 3,       True,        -1 },  /* from Zathura */
 	{ "Evince",                  NULL,       NULL,             1 << 3,       False,       -1 },
-	{ "Gimp",                    NULL,       NULL,             1 << 4,       True,        -1 },
-	{ "Inkscape",                NULL,       NULL,             1 << 4,       True,        -1 },
-	{ "Scribus",                 NULL,       NULL,             1 << 4,       True,        -1 },
-	{ "Gnome-mplayer",           NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Deadbeef",                NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "Galculator",              NULL,       NULL,             1 << 5,       True,        -1 },
-	{ NULL,                      NULL,       "HandBrake",      1 << 5,       True,        -1 },
-	{ "Easytag",                 NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "geogebra",                NULL,       NULL,             1 << 5,       True,        -1 },
-	{ "JDownloader",             NULL,       NULL,             1 << 5,       True,        -1 },
-	{ NULL,  "sun-awt-X11-XFramePeer",       NULL,             1 << 5,       True,        -1 },  /* Java... */
-	{ "VirtualBox",              NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "Sxiv",                    NULL,       NULL,             1 << 4,       False,       -1 },
+	{ "Gimp",                    NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Inkscape",                NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Scribus",                 NULL,       NULL,             1 << 5,       True,        -1 },
+	{ "Gnome-mplayer",           NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "Deadbeef",                NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "Galculator",              NULL,       NULL,             1 << 6,       True,        -1 },
+	{ NULL,                      NULL,       "HandBrake",      1 << 6,       True,        -1 },
+	{ "Easytag",                 NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "geogebra",                NULL,       NULL,             1 << 6,       True,        -1 },
+	{ "JDownloader",             NULL,       NULL,             1 << 6,       True,        -1 },
+	{ NULL,  "sun-awt-X11-XFramePeer",       NULL,             1 << 6,       True,        -1 },  /* Java... */
+	{ "VirtualBox",              NULL,       NULL,             1 << 7,       True,        -1 },
 };
 
 /* layout(s) */
@@ -119,6 +119,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask|ControlMask, XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_s,      spawn,          {.v = snippycmd } },
 };
