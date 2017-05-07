@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 289008 2017-02-15 14:06:48Z anthraxx $
+# $Id: PKGBUILD 294726 2017-04-26 07:53:42Z lfleischer $
 # ==================================================================
 # FILE     PKGBUILD (for vim)
 # MACHINE  all
 # INFO     original in var/abs/extra/vim/
 #          Version 8.0
 #
-# DATE     05.03.2017
+# DATE     05.05.2017
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -19,9 +19,9 @@
 
 pkgbase=vim
 pkgname=(vim vim-runtime)
-pkgver=8.0.0329
+pkgver=8.0.0586
 _versiondir=80
-pkgrel=1
+pkgrel=2
 arch=(i686 x86_64)
 license=('custom:vim')
 url='http://www.vim.org'
@@ -30,7 +30,7 @@ source=(vim-$pkgver.tar.gz::http://github.com/vim/vim/archive/v$pkgver.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha1sums=('162d2876a612da32ce099e05d2f05a201043617a'
+sha1sums=('0215480a10362cbfc1494b074742dc2399dd3d11'
           '539bfaa0517dfff6d61c37f9c2d81a0db756a4c9'
           '94f7bb87b5d06bace86bc4b3ef1372813b4eedf2'
           'adc4c82b6c4097944e5a767270a772721455eb8c')
