@@ -1,11 +1,11 @@
-# $Id: PKGBUILD 294726 2017-04-26 07:53:42Z lfleischer $
+# $Id$
 # ==================================================================
 # FILE     PKGBUILD (for vim)
 # MACHINE  all
-# INFO     original in var/abs/extra/vim/
+# INFO     get original with "asp export vim"
 #          Version 8.0
 #
-# DATE     05.05.2017
+# DATE     09.06.2017
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -19,9 +19,9 @@
 
 pkgbase=vim
 pkgname=(vim vim-runtime)
-pkgver=8.0.0586
+pkgver=8.0.0628
 _versiondir=80
-pkgrel=2
+pkgrel=1
 arch=(i686 x86_64)
 license=('custom:vim')
 url='http://www.vim.org'
@@ -30,18 +30,13 @@ source=(vim-$pkgver.tar.gz::http://github.com/vim/vim/archive/v$pkgver.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha1sums=('0215480a10362cbfc1494b074742dc2399dd3d11'
+sha1sums=('a6345466133f84874f11c93c4f59b82a069a3b46'
           '539bfaa0517dfff6d61c37f9c2d81a0db756a4c9'
           '94f7bb87b5d06bace86bc4b3ef1372813b4eedf2'
           'adc4c82b6c4097944e5a767270a772721455eb8c')
 
 prepare() {
-  cd vim-$pkgver/src
-
-  # https://github.com/vim/vim/pull/1193
-  # drop these if the problematic commits on gtk3 get reverted...
-  #patch -Np2 -i "$srcdir"/0001-Fix-widget-sizing-on-current-Gtk-3.22-branch.patch
-  #patch -Np2 -i "$srcdir"/0002-Further-fix-widget-sizing.patch
+  cd $srcdir/vim-$pkgver/src
 
   # define the place for the global (g)vimrc file (set to /etc/vimrc)
   sed -i 's|^.*\(#define SYS_.*VIMRC_FILE.*"\) .*$|\1|' feature.h
