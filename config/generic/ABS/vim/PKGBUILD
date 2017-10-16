@@ -1,15 +1,15 @@
-# $Id$
 # ==================================================================
 # FILE     PKGBUILD (for vim)
 # MACHINE  all
 # INFO     get original with "asp export vim"
 #          Version 8.0
 #
-# DATE     09.06.2017
+# DATE     16.10.2017
 # OWNER    Bischofberger
 # ==================================================================
 
-# Maintainer: Anatol Pomozov <anatol.pomozov@gmail.com>
+# Maintainer: Levente Polyak <anthraxx[at]archlinux[dot]org>
+# Contributor: Anatol Pomozov <anatol.pomozov@gmail.com>
 # Contributor: Thomas Dziedzic <gostrc@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
 # Contributor: tobias [ tobias at archlinux org ]
@@ -18,62 +18,65 @@
 # Contributor: Eli Schwartz
 
 pkgbase=vim
-pkgname=(vim vim-runtime)
-pkgver=8.0.0628
+pkgname=('vim' 'vim-runtime')
+pkgver=8.0.1176
 _versiondir=80
 pkgrel=1
-arch=(i686 x86_64)
-license=('custom:vim')
 url='http://www.vim.org'
-makedepends=(libxt)
-source=(vim-$pkgver.tar.gz::http://github.com/vim/vim/archive/v$pkgver.tar.gz
+arch=('i686' 'x86_64')
+license=('custom:vim')
+makedepends=('libxt')
+source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha1sums=('a6345466133f84874f11c93c4f59b82a069a3b46'
-          '539bfaa0517dfff6d61c37f9c2d81a0db756a4c9'
-          '94f7bb87b5d06bace86bc4b3ef1372813b4eedf2'
-          'adc4c82b6c4097944e5a767270a772721455eb8c')
+sha256sums=('1485524d747b2046b9e1ea3bfcf80148e6a9a65e29d972d23cf88152ad9dcca2'
+            'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
+            '0cf8b42732111d0c66c3908a76d832736e8f8dc3abef81cb092ddf84cb862ea2'
+            '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
+sha512sums=('6cc4001476e5002cf60c0ddda61e204bb1e04de75a1839a449149eb8cdae1ded9c79bc5ee6d5f9d2caf1ac36ba19f66000ce9bbca43a55fb847a71bcb6b10272'
+            '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
+            '935c15a4cc55b9209e6b6c974df765cc6683ae32ccea38acadc825bbc9c60b97ebe14aec8814b7e52080c0d0ded520a68ff1880ab64f320b08c181b6bf862edb'
+            '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
 
 prepare() {
-  cd $srcdir/vim-$pkgver/src
-
-  # define the place for the global (g)vimrc file (set to /etc/vimrc)
-  sed -i 's|^.*\(#define SYS_.*VIMRC_FILE.*"\) .*$|\1|' feature.h
-  sed -i 's|^.*\(#define VIMRC_FILE.*"\) .*$|\1|' feature.h
-
-  autoconf
-
-  cd "$srcdir"
-  cp -a vim-$pkgver gvim-$pkgver
+  (cd vim-${pkgver}/src
+    # define the place for the global (g)vimrc file (set to /etc/vimrc)
+    sed -i 's|^.*\(#define SYS_.*VIMRC_FILE.*"\) .*$|\1|' feature.h
+    sed -i 's|^.*\(#define VIMRC_FILE.*"\) .*$|\1|' feature.h
+    autoconf
+  )
+  cp -a vim-${pkgver} gvim-${pkgver}
 }
 
 build() {
-  cd "${srcdir}"/vim-$pkgver
-  ./configure \
-    --prefix=/usr \
-    --localstatedir=/var/lib/vim \
-    --with-features=normal \
-    --with-compiledby='Arch:Bruno' \
-    --disable-gpm \
-    --enable-acl \
-    --with-x=yes \
-    --disable-gui \
-    --enable-multibyte \
-    --enable-cscope \
-    --disable-netbeans \
-    --disable-perlinterp \
-    --disable-pythoninterp \
-    --disable-python3interp \
-    --disable-rubyinterp \
-    --disable-luainterp \
-    --disable-tclinterp
-  make
+  msg2 "Building vim..."
+  (cd vim-${pkgver}
+    ./configure \
+      --prefix=/usr \
+      --localstatedir=/var/lib/vim \
+      --with-features=normal \
+      --with-compiledby='Arch:Bruno' \
+      --disable-gpm \
+      --enable-acl \
+      --with-x=yes \
+      --disable-gui \
+      --enable-multibyte \
+      --enable-cscope \
+      --disable-netbeans \
+      --disable-perlinterp \
+      --disable-pythoninterp \
+      --disable-python3interp \
+      --disable-rubyinterp \
+      --disable-luainterp \
+      --disable-tclinterp
+    make
+  )
 }
 
 check() {
+  cd vim-${pkgver}
   # Bruno: tests still freeze! Disable them.
-  cd "${srcdir}"/vim-$pkgver
   #TERM=xterm make -j1 test
 }
 
@@ -81,14 +84,14 @@ package_vim-runtime() {
   pkgdesc='Runtime for vim and gvim'
   backup=('etc/vimrc')
 
-  cd "${srcdir}"/vim-$pkgver
+  cd vim-${pkgver}
 
   make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
   # man and bin files belong to 'vim'
   rm -r "${pkgdir}"/usr/share/man/ "${pkgdir}"/usr/bin/
 
   # Don't forget logtalk.dict
-  install -Dm644 runtime/ftplugin/logtalk.dict \
+  install -Dm 644 runtime/ftplugin/logtalk.dict \
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/ftplugin/logtalk.dict
 
   # fix FS#17216
@@ -102,24 +105,24 @@ package_vim-runtime() {
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/ftplugin/changelog.vim
 
   # rc files
-  install -Dm644 "${srcdir}"/vimrc "${pkgdir}"/etc/vimrc
-  install -Dm644 "${srcdir}"/archlinux.vim \
+  install -Dm 644 "${srcdir}"/vimrc "${pkgdir}"/etc/vimrc
+  install -Dm 644 "${srcdir}"/archlinux.vim \
     "${pkgdir}"/usr/share/vim/vimfiles/archlinux.vim
 
   # rgb.txt file
-  install -Dm644 runtime/rgb.txt \
+  install -Dm 644 runtime/rgb.txt \
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/rgb.txt
 
   # no desktop files and icons
   rm -r "${pkgdir}"/usr/share/{applications,icons}
 
   # license
-  install -dm755 "${pkgdir}"/usr/share/licenses/vim-runtime
+  install -dm 755 "${pkgdir}"/usr/share/licenses/vim-runtime
   ln -s /usr/share/vim/vim${_versiondir}/doc/uganda.txt \
     "${pkgdir}"/usr/share/licenses/vim-runtime/license.txt
 
   # pacman hook for documentation helptags
-  install -Dm644 "${srcdir}"/vimdoc.hook "${pkgdir}"/usr/share/libalpm/hooks/vimdoc.hook
+  install -Dm 644 "${srcdir}"/vimdoc.hook "${pkgdir}"/usr/share/libalpm/hooks/vimdoc.hook
 }
 
 package_vim() {
@@ -135,7 +138,7 @@ package_vim() {
   provides=('xxd' 'vim-minimal' 'vim-python3')
   replaces=('vim-python3' 'vim-minimal')
 
-  cd "${srcdir}"/vim-$pkgver
+  cd vim-${pkgver}
   make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
 
   # provided by (n)vi in core
@@ -144,7 +147,7 @@ package_vim() {
   # delete some manpages
   find "${pkgdir}"/usr/share/man -type d -name 'man1' 2>/dev/null | \
     while read _mandir; do
-    cd ${_mandir}
+    cd "${_mandir}"
     rm -f ex.1 view.1 # provided by (n)vi
     rm -f evim.1    # this does not make sense if we have no GUI
   done
@@ -156,7 +159,8 @@ package_vim() {
   rm -r "${pkgdir}"/usr/share/{applications,icons}
 
   # license
-  install -Dm644 runtime/doc/uganda.txt \
+  install -Dm 644 runtime/doc/uganda.txt \
     "${pkgdir}"/usr/share/licenses/${pkgname}/license.txt
 }
 
+# vim: ts=2 sw=2 et:
