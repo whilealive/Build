@@ -64,7 +64,7 @@ build() {
       --with-x=yes \
       --disable-gui \
       --enable-multibyte \
-      --enable-cscope \
+      --disable-cscope \
       --disable-netbeans \
       --disable-perlinterp \
       --disable-pythoninterp \
