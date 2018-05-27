@@ -2,9 +2,9 @@
 # FILE     PKGBUILD (for vim)
 # MACHINE  all
 # INFO     get original with "asp export vim"
-#          Version 8.0
+#          Version 8.1
 #
-# DATE     16.10.2017
+# DATE     27.05.2018
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -19,24 +19,26 @@
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
-pkgver=8.0.1176
-_versiondir=80
+pkgver=8.1.0022
+_versiondir=81
 pkgrel=1
+pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
 url='http://www.vim.org'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 license=('custom:vim')
-makedepends=('libxt')
+makedepends=('glibc' 'libgcrypt' 'gpm' 'libxt' 'gtk3'
+             'gawk' 'pcre' 'zlib' 'libffi')
 source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha256sums=('1485524d747b2046b9e1ea3bfcf80148e6a9a65e29d972d23cf88152ad9dcca2'
+sha256sums=('28b5d850d4df455f41c457399a578b1da6cca2bcc79115498356aa0afd8ca460'
             'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
-            '0cf8b42732111d0c66c3908a76d832736e8f8dc3abef81cb092ddf84cb862ea2'
+            '2a6689ce603486f87df9d7e9697032015a8688d663984f5380c1f16cfeed31d4'
             '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
-sha512sums=('6cc4001476e5002cf60c0ddda61e204bb1e04de75a1839a449149eb8cdae1ded9c79bc5ee6d5f9d2caf1ac36ba19f66000ce9bbca43a55fb847a71bcb6b10272'
+sha512sums=('44d44b136e25368a7c5cda156ff1166164e2ec3d0c4f43040cbbd62ca5ec49d1b9d6bdc695daf92a67f6a2f214ab0a9922542b71dde75c99e69291f5164fffa7'
             '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
-            '935c15a4cc55b9209e6b6c974df765cc6683ae32ccea38acadc825bbc9c60b97ebe14aec8814b7e52080c0d0ded520a68ff1880ab64f320b08c181b6bf862edb'
+            '6d0130bb35fc1abb5d657393290d838742725a9d5e4e592b5fd71c8c5852374de010fb58347974096192c8dd8cf42c67185bc2cc38c70609afbcce2c91489781'
             '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
 
 prepare() {
@@ -81,7 +83,10 @@ check() {
 }
 
 package_vim-runtime() {
-  pkgdesc='Runtime for vim and gvim'
+  pkgdesc+=' (shared runtime)'
+  optdepends=('sh: support for some tools and macros'
+              'python: demoserver example tool'
+              'gawk: mve tools upport')
   backup=('etc/vimrc')
 
   cd vim-${pkgver}
@@ -126,8 +131,8 @@ package_vim-runtime() {
 }
 
 package_vim() {
-  pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
-  depends=("vim-runtime=${pkgver}-${pkgrel}" 'gpm' 'acl')
+  depends=("vim-runtime=${pkgver}-${pkgrel}" 'gpm' 'acl' 'glibc' 'libgcrypt' 'pcre'
+           'zlib' 'libffi')
   optdepends=('python2: Python 2 language support'
               'python: Python 3 language support'
               'ruby: Ruby language support'
@@ -155,8 +160,8 @@ package_vim() {
   # Runtime provided by runtime package
   rm -r "${pkgdir}"/usr/share/vim
 
-  # no desktop files and icons
-  rm -r "${pkgdir}"/usr/share/{applications,icons}
+  # remove gvim.desktop as not included
+  rm "${pkgdir}"/usr/share/applications/gvim.desktop
 
   # license
   install -Dm 644 runtime/doc/uganda.txt \
