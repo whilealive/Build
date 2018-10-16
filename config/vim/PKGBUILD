@@ -4,7 +4,7 @@
 # INFO     get original with "asp export vim"
 #          Version 8.1
 #
-# DATE     27.05.2018
+# DATE     16.10.2018
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -19,11 +19,11 @@
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
-pkgver=8.1.0022
+pkgver=8.1.0470
 _versiondir=81
 pkgrel=1
 pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
-url='http://www.vim.org'
+url='https://www.vim.org'
 arch=('x86_64')
 license=('custom:vim')
 makedepends=('glibc' 'libgcrypt' 'gpm' 'libxt' 'gtk3'
@@ -32,13 +32,13 @@ source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha256sums=('28b5d850d4df455f41c457399a578b1da6cca2bcc79115498356aa0afd8ca460'
+sha256sums=('1e78431c0f46fe366918bdb34bb99691fa7c2f87cfccd9671659f81a6f577413'
             'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
-            '2a6689ce603486f87df9d7e9697032015a8688d663984f5380c1f16cfeed31d4'
+            'cc3d931129854c298eb22e993ec14c2ad86cc1e70a08a64496f5e06559289972'
             '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
-sha512sums=('44d44b136e25368a7c5cda156ff1166164e2ec3d0c4f43040cbbd62ca5ec49d1b9d6bdc695daf92a67f6a2f214ab0a9922542b71dde75c99e69291f5164fffa7'
+sha512sums=('ce9a8e9e005c3d1bb42b71056d811c6aae0ade1799013190213c329f8b691065e9dc119f90e4026801afe87e61b61d98f1d2b3a812b1eb6aa45066e467d4fc29'
             '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
-            '6d0130bb35fc1abb5d657393290d838742725a9d5e4e592b5fd71c8c5852374de010fb58347974096192c8dd8cf42c67185bc2cc38c70609afbcce2c91489781'
+            'fe091d289d876f45319c898f6021ef86d6a238b540c225a279c46efc5c36fa7d868cd0cee73a111811c4be90df160f85340bb251be3a437727dbe5c699950363'
             '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
 
 prepare() {
