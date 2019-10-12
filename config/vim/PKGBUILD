@@ -4,7 +4,7 @@
 # INFO     get original with "asp export vim"
 #          Version 8.1
 #
-# DATE     16.10.2018
+# DATE     12.10.2019
 # OWNER    Bischofberger
 # ==================================================================
 
@@ -15,11 +15,11 @@
 # Contributor: tobias [ tobias at archlinux org ]
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 # Contributor: Christian Hesse <mail@eworm.de>
-# Contributor: Eli Schwartz
+# Contributor: Eli Schwartz <eschwartz@archlinux.org>
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
-pkgver=8.1.0470
+pkgver=8.1.2102
 _versiondir=81
 pkgrel=1
 pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
@@ -28,15 +28,15 @@ arch=('x86_64')
 license=('custom:vim')
 makedepends=('glibc' 'libgcrypt' 'gpm' 'libxt' 'gtk3'
              'gawk' 'pcre' 'zlib' 'libffi')
-source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
+source=(https://github.com/vim/vim/archive/v${pkgver}/${pkgbase}-${pkgver}.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha256sums=('1e78431c0f46fe366918bdb34bb99691fa7c2f87cfccd9671659f81a6f577413'
+sha256sums=('e2ec8449a8a419db73d266762cef20fd125cf9da9516832b9211f970b03c0d7c'
             'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
             'cc3d931129854c298eb22e993ec14c2ad86cc1e70a08a64496f5e06559289972'
             '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
-sha512sums=('ce9a8e9e005c3d1bb42b71056d811c6aae0ade1799013190213c329f8b691065e9dc119f90e4026801afe87e61b61d98f1d2b3a812b1eb6aa45066e467d4fc29'
+sha512sums=('2a7dc4c031dc7ff81cb8f9818d4c3dbd5f9de21a352eb94d61410bba79dc287300f83f2c6c3ed251060ecb7be72cff40dcf3b5bc6842efddfe3b49ca409b6d85'
             '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
             'fe091d289d876f45319c898f6021ef86d6a238b540c225a279c46efc5c36fa7d868cd0cee73a111811c4be90df160f85340bb251be3a437727dbe5c699950363'
             '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
@@ -71,7 +71,8 @@ build() {
       --disable-python3interp \
       --disable-rubyinterp \
       --disable-luainterp \
-      --disable-tclinterp
+      --disable-tclinterp \
+      --disable-canberra
     make
   )
 }
@@ -98,16 +99,6 @@ package_vim-runtime() {
   # Don't forget logtalk.dict
   install -Dm 644 runtime/ftplugin/logtalk.dict \
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/ftplugin/logtalk.dict
-
-  # fix FS#17216
-  sed -i 's|messages,/var|messages,/var/log/messages.log,/var|' \
-    "${pkgdir}"/usr/share/vim/vim${_versiondir}/filetype.vim
-
-  # patch filetype.vim for better handling of pacman related files
-  sed -i "s/rpmsave/pacsave/;s/rpmnew/pacnew/;s/,\*\.ebuild/\0,PKGBUILD*,*.install/" \
-    "${pkgdir}"/usr/share/vim/vim${_versiondir}/filetype.vim
-  sed -i "/find the end/,+3{s/changelog_date_entry_search/changelog_date_end_entry_search/}" \
-    "${pkgdir}"/usr/share/vim/vim${_versiondir}/ftplugin/changelog.vim
 
   # rc files
   install -Dm 644 "${srcdir}"/vimrc "${pkgdir}"/etc/vimrc
