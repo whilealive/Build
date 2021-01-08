@@ -1,10 +1,10 @@
 /*
 * ==================================================================
-* FILE     st config.h file
+* FILE     config.h
 * MACHINE  all
-* INFO     version 0.8.1
+* INFO     config.h file for st 0.8.1
 *
-* DATE     09.05.2018
+* DATE     08.01.2021
 * OWNER    Bischofberger
 * ==================================================================
 */
@@ -16,8 +16,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-//static char *font = "Inconsolata:pixelsize=18:antialias=true:autohint=true";  // laptop2
-static char *font = "Inconsolata:pixelsize=15:antialias=true:autohint=true";  // desktop
+static char *font = "Hack:style=Regular:pixelsize=14:antialias=true:autohint=true";  // desktop
+static char *font = "Hack:style=Regular:pixelsize=16:antialias=true:autohint=true";  // laptop3
+
 static int borderpx = 2;
 
 /*
