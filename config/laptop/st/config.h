@@ -1,10 +1,11 @@
 /*
 * ==================================================================
 * FILE     config.h
-* MACHINE  all
+* MACHINE  laptop3
 * INFO     config.h file for st 0.8.1
+*          use numberpad Pg Up/Down keys on Acer Aspire (see shortcuts[])
 *
-* DATE     08.01.2021
+* DATE     08.06.2022
 * OWNER    Bischofberger
 * ==================================================================
 */
@@ -16,7 +17,6 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Hack:style=Regular:pixelsize=14:antialias=true:autohint=true";  // desktop
 static char *font = "Hack:style=Regular:pixelsize=16:antialias=true:autohint=true";  // laptop3
 
 static int borderpx = 2;
@@ -183,9 +183,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ TERMMOD,              XK_KP_Prior,    zoom,           {.f = +1} },  /* Acer Aspire */
+	{ TERMMOD,              XK_KP_Next,     zoom,           {.f = -1} },  /* Acer Aspire */
+	{ TERMMOD,              XK_KP_Home,     zoomreset,      {.f =  0} },  /* Acer Aspire */
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
