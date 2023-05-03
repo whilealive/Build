@@ -1,12 +1,13 @@
 # ==================================================================
-# FILE     .gitignore (for Build repository)
+# FILE     .gitignore
 # MACHINE  all
-# INFO     -
+# INFO     for Build repository
 #
-# DATE     19.01.2016
+# DATE     03.05.2023
 # OWNER    Bischofberger
 # ==================================================================
 
 # git shall ignore the following
 packages/
 testing/
+cloned-repositories/
