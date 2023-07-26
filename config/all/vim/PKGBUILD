@@ -3,13 +3,15 @@
 # MACHINE  all
 # INFO     modified PKGBUILD for my personal vim compilation
 #          get original with "asp export vim"
-#          Version 8.2
+#          Version 9.0
 #
-# DATE     17.08.2021
+# DATE     26.07.2023
 # OWNER    Bischofberger
 # ==================================================================
 
 # Maintainer: Levente Polyak <anthraxx[at]archlinux[dot]org>
+# Maintainer: Morten Linderud <foxboron@archlinux.org>
+# Maintainer: T.J. Townsend <blakkheim@archlinux.org>
 # Contributor: Anatol Pomozov <anatol.pomozov@gmail.com>
 # Contributor: Thomas Dziedzic <gostrc@gmail.com>
 # Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
@@ -20,24 +22,24 @@
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
-pkgver=8.2.3340
-_versiondir=82
-pkgrel=1
+pkgver=9.0.1676
+_versiondir=90
+pkgrel=2
 pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
 url='https://www.vim.org'
-arch=('x86_64')
+arch=('x86_64' 'x86_64_v3')
 license=('custom:vim')
 makedepends=('glibc' 'libgcrypt' 'libxt' 'gtk3'
-             'gawk' 'pcre' 'zlib')
+             'gawk' 'zlib')
 source=(https://github.com/vim/vim/archive/v${pkgver}/${pkgbase}-${pkgver}.tar.gz
         vimrc
         archlinux.vim
         vimdoc.hook)
-sha256sums=('83c6774871b6666c9bd2a8dfa5aefe906a48c9442c813a59c5227bcca82e2974'
+sha256sums=('213efdf292b758e34349a83143e69907da2a6abaff61690f3df2eeefbb5cf2b4'
             'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
             'cc3d931129854c298eb22e993ec14c2ad86cc1e70a08a64496f5e06559289972'
             '8e9656934d9d7793063230d15a689e10455e6db9b9fe73afa0f294792795d8ae')
-sha512sums=('fb3260a80a5e3875631761a74f9f25e176b884fff1bc0b4eb706c1e36b5795d4dc837fafcf6a642fca7e56bf271b86af0dd22cbb965c6c780703920f227be6bf'
+sha512sums=('89e2e142d2dcbd162efd3f552ac745c2f2aaa905c08f8ffb88122feb53c9150a8906cfbfbba6203c186d7651276c8582ffc39c0b54f5bbf81e9a32546e7b1715'
             '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
             'fe091d289d876f45319c898f6021ef86d6a238b540c225a279c46efc5c36fa7d868cd0cee73a111811c4be90df160f85340bb251be3a437727dbe5c699950363'
             'a02ad0d66f300160911aeb81d8886c6c558436ac4ee3fcd161dd65c6b1e5d1f41b9005a7f5bb5ba68d57027fc1c8e43daabf055bd6207fb5a216a67f758df8d1')
@@ -68,7 +70,6 @@ build() {
       --disable-cscope \
       --disable-netbeans \
       --disable-perlinterp \
-      --disable-pythoninterp \
       --disable-python3interp \
       --disable-rubyinterp \
       --disable-luainterp \
@@ -106,10 +107,6 @@ package_vim-runtime() {
   install -Dm 644 "${srcdir}"/archlinux.vim \
     "${pkgdir}"/usr/share/vim/vimfiles/archlinux.vim
 
-  # rgb.txt file
-  install -Dm 644 runtime/rgb.txt \
-    "${pkgdir}"/usr/share/vim/vim${_versiondir}/rgb.txt
-
   # no desktop files and icons
   rm -r "${pkgdir}"/usr/share/{applications,icons}
 
@@ -123,17 +120,15 @@ package_vim-runtime() {
 }
 
 package_vim() {
-  depends=("vim-runtime=${pkgver}-${pkgrel}" 'gpm' 'acl' 'glibc' 'libgcrypt' 'pcre'
-           'zlib')
-  optdepends=('python2: Python 2 language support'
-              'python: Python 3 language support'
+  depends=("vim-runtime=${pkgver}-${pkgrel}" 'gpm' 'acl' 'glibc' 'libgcrypt' 'zlib' 'perl')
+  optdepends=('python: Python language support'
               'ruby: Ruby language support'
               'lua: Lua language support'
-              'perl: Perl language support'
+              #'perl: Perl language support'
               'tcl: Tcl language support')
-  conflicts=('gvim' 'vim-minimal' 'vim-python3')
-  provides=('xxd' 'vim-minimal' 'vim-python3' 'vim-plugin-runtime')
-  replaces=('vim-python3' 'vim-minimal')
+  conflicts=('gvim' 'vim-minimal')
+  provides=('xxd' 'vim-minimal' 'vim-plugin-runtime')
+  replaces=('vim-minimal')
 
   cd vim-${pkgver}
   make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
