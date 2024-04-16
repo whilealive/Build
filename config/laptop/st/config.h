@@ -2,10 +2,10 @@
 * ==================================================================
 * FILE     config.h
 * MACHINE  laptop3
-* INFO     config.h file for st 0.9.4
+* INFO     config.h file for st 0.9.2-1
 *          use numberpad Pg Up/Down keys on Acer Aspire (see shortcuts[])
 *
-* DATE     11.04.2024
+* DATE     16.04.2024
 * OWNER    Bischofberger
 * ==================================================================
 */
@@ -57,7 +57,7 @@ int allowaltscreen = 1;
 
 /* allow certain non-interactive (insecure) window operations such as:
    setting the clipboard text */
-int allowwindowops = 0;
+int allowwindowops = 1;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
